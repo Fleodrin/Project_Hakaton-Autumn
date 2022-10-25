@@ -6,8 +6,9 @@
 *.pdf
 *.psd
 *.sublime*
+npm-debug.*
 build/
 node_modules/
-npm-debug.*
-source/css/*.css
-source/css/*.map
+web/__pycache__/
+webapp/__pycache__/
+web/migrations/__pycache__/
