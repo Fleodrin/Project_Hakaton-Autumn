@@ -4,7 +4,7 @@
     <h1 class="login__title">Вход</h1>
     <a class="login__link" href="{% url 'register' %}">Зарегистрироваться</a>
 
-    <form class="login__form form" method="post" name="form-login" action="{% url 'general' %}">
+    <form class="login__form form" method="post" name="form-login">
       {% csrf_token %}
       <label class="form__label" for="field-email">Почта</label>
       <input class="form__field" id="field-email" type="email" name="field-email" placeholder="example@elpmaxe.com"
