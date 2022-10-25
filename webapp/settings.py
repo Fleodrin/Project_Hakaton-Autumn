@@ -136,8 +136,8 @@ STATIC_ROOT = os.path.join(BASE_DIR / 'build/static')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'loxigl@sandboxc1f4b2f14c544b6b8cbf621a0fde9dad.mailgun.org'
-EMAIL_HOST_PASSWORD = '6e5df9a2b05166d58d29052f94cd9627-8845d1b1-18c2a49f'
+EMAIL_HOST_USER = 'rector.site@gmail.com'
+EMAIL_HOST_PASSWORD = 'otdxtomrqyicsoxw'
 EMAIL_USE_TLS = True

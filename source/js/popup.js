@@ -7,7 +7,6 @@ const popup = (popupName, buttonName) => {
     };
   }
 
-
   window.setTimeout(addHidden, 5000);
   function addHidden() {
     return popupName.classList.add('popup--close');
