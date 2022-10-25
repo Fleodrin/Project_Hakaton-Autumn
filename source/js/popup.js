@@ -4,17 +4,8 @@ const bruh=document.getElementById('bruh')
 const popupProvost = document.querySelector('.popup-provost');
 const buttonProvost = document.querySelector('.popup-provost__button');
 const feedback = document.getElementById('feedback');
-import {getCookie} from './cookie.js'
-// function getCookie(name) {
-//   let matches = document.cookie.match(new RegExp(
-//     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-//   ));
-//   return matches ? decodeURIComponent(matches[1]) : undefined;
-// }
-let a=getCookie('login_status')
 const popup = (popupName, buttonName) => {
   popupName.classList.remove('popup--close');
-
   buttonName.onclick = () => {
     return popupName.classList.add('popup--close');
   };
