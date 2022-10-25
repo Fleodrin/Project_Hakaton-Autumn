@@ -1,4 +1,5 @@
 from django.core.mail import send_mail
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from .models import User, add_user, add_feedback, upload_news, News
 
@@ -11,18 +12,24 @@ def index(request, contexts=None, ):
   name = request.POST.get('feedback-name')
   email = request.POST.get('feedback-mail')
   message = request.POST.get('feedback-message')
+
   news = News.objects.all().order_by('-public_date')
+  p = Paginator(news, 3)
+  page = request.GET.get('page')
+  newss = p.get_page(page)
   context = {
-    'news': news,
+    'news': newss,
   }
   context.update(contexts)
   if request.method == 'POST' and name is not None:
     add_feedback(name, email, message)
     message = 'От: ' + name + '\n' + message + '\n' + 'Почта для связи: ' + email
-    # send_mail(subject='От: ' + name, message=message,
-    #           from_email='loxigl@sandboxc1f4b2f14c544b6b8cbf621a0fde9dad.mailgun.org',
-    #           recipient_list=['rector.site@gmail.com'])
-    context = {'result': 2}
+    send_mail(subject='От: ' + name, message=message,
+              from_email='rector.site@gmail.com',
+              recipient_list=['rector.site@gmail.com'])
+    res = {'result': 2}
+    context.update(res)
+
   return render(request, 'index.html', context)
 
 
