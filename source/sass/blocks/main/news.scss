@@ -112,6 +112,7 @@
   @media (min-width: f.$tablet-width) {
     margin-top: 45px;
     margin-left: 70px;
+    padding: 0;
     text-align: left;
     font-size: 32px;
   }
@@ -134,6 +135,7 @@
   order: 1;
   border-radius: 15px 15px 0 0;
   margin-bottom: 60px;
+  object-fit: cover;
 
   @media (min-width: f.$tablet-width) {
     width: 400px;
@@ -152,8 +154,9 @@
   font-size: 16px;
 
   @media (min-width: f.$tablet-width) {
-    width: 442px;
-    margin: 0 0 23px 71px;
+    max-width: 442px;
+    margin: 0 0 23px 41px;
+    padding: 0 30px;
     font-size: 24px;
   }
 }
