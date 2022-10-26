@@ -17,9 +17,7 @@ import mimetypes
 from django.template.backends import django
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-mimetypes.add_type("text/css", ".css", True)
-mimetypes.add_type("image/svg+xml", ".svg", True)
-mimetypes.add_type("image/svg+xml", ".svgz", True)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
