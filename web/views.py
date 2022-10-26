@@ -17,11 +17,17 @@ import sys
 def index(request):
   context = {}
   try:
+    login_success = request.COOKIES['login_success']
+  except:
+    login_success = None
+  try:
     cookie = request.COOKIES['login_status']
   except KeyError:
     cookie = None
   if cookie is not None:
     context.update({'login_status': cookie})
+  if login_success is not None:
+    context.update({'login_success': login_success})
   name = request.POST.get('feedback-name')
   email = request.POST.get('feedback-mail')
   message = request.POST.get('feedback-message')
@@ -51,15 +57,9 @@ def get_news_context(request):
   return context_news
 
 
-
-
-
 def calendar(request):
   return 0
 
 
 def events(request):
   return 0
-
-
-

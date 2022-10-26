@@ -66,10 +66,14 @@ ROOT_URLCONF = 'webapp.urls'
 TEMPLATES = [
   {
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'DIRS': [BASE_DIR / 'build/template',
-             BASE_DIR / 'source/templates',
+    'DIRS': [
+      # for prod
+      BASE_DIR / 'build/template',
 
-             ]
+      # for dev
+      BASE_DIR / 'source/templates',
+
+    ]
     ,
     'APP_DIRS': True,
     'OPTIONS': {
@@ -132,7 +136,12 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = 'static/'
+
+# for production
 STATIC_ROOT = os.path.join(BASE_DIR / 'build/static')
+
+# for dev
+# STATIC_ROOT = os.path.join(BASE_DIR / 'source')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

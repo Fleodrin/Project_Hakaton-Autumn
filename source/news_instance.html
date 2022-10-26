@@ -6,9 +6,9 @@
       <p class="news__item-date">{{ news.public_date|date:'j.m.y' }}</p>
       <img class="news__item-image" src='{{ news.image.url }}' alt="Ректор" width="260"
            height="195">
-      <p>{{ news.main_text }}</p>
       <p class="news__item-subtitle">{{ news.preview }}</p>
       <a class="news__item-link" href="{{ news.get_absolute_url }}">Читать</a>
+      <p >{{ news.main_text }}</p>
     </li>
   </ul>
 {% endblock %}

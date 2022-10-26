@@ -43,6 +43,7 @@ def login(request):
   if tmp == 1:
     obj = redirect('general')
     obj.set_cookie('login_status', True, 60 * 60 * 24 * 15)
+    obj.set_cookie('login_success', 1, 20)
     return obj
   else:
     return render(request, 'login.html', context)
