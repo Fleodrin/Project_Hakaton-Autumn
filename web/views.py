@@ -7,8 +7,9 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.template.defaulttags import url
 
+from news.models import News
 from webapp import urls
-from .models import User, add_user, add_feedback, upload_news, News
+from .models import add_feedback
 import logging, logging.config
 import sys
 
@@ -46,54 +47,11 @@ def get_news_context(request):
   context_news = {
     'news': newss,
   }
+  print(news)
   return context_news
 
 
-def register(request):
-  name = request.POST.get('field-name')
-  email = request.POST.get('field-email')
-  error = 0
-  try:
-    user = User.objects.get(email=email)
-    error = 1
-  except User.DoesNotExist:
-    user = None
-  password = request.POST.get('field-pass')
-  who = request.POST.get('product-group')
-  if request.method == 'POST' and name is not None and user is None:
-    add_user(name, email, password, who)
-  return render(request, 'register.html', context={'error': error})
 
-
-def login(request):
-  email_form = request.POST.get('field-email')
-  user = None
-  tmp = 0
-  if email_form is not None:
-    try:
-      user = User.objects.get(email=email_form)
-    except User.DoesNotExist:
-      user = None
-  if user is not None:
-    password_form = request.POST.get('field-pass')
-    if password_form == user.password:
-      tmp = 1
-    else:
-      tmp = 2
-  context = {
-    'action': tmp
-  }
-  if tmp == 1:
-    context.update(get_news_context(request))
-    obj = redirect('general')
-    obj.set_cookie('login_status', True, 60 * 60 * 24 * 15)
-    return obj
-  else:
-    return render(request, 'login.html', context)
-
-
-def news(request):
-  return 0
 
 
 def calendar(request):
@@ -104,7 +62,4 @@ def events(request):
   return 0
 
 
-def logout(request):
-  final = redirect('general')
-  final.set_cookie('login_status', True, -1)
-  return final
+

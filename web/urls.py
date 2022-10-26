@@ -7,8 +7,8 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 urlpatterns = [
-                path('', views.index, name='general'),
-                path('login/', RedirectView.as_view(url='login', permanent=False)),
-              ]
+  path('', views.index, name='general'),
+  # path('login/', RedirectView.as_view(url='login', permanent=False)),
+]
 
 # urlpatterns += staticfiles_urlpatterns()

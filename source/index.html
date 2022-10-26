@@ -4,7 +4,7 @@
   <main class="main-container">
     <section class="title">
       <div class="title__wrapper">
-        <h1 class="title__text">Информационный портал вашего вуза   </h1>
+        <h1 class="title__text">Информационный портал вашего вуза </h1>
       </div>
     </section>
     <section class="news">
@@ -27,7 +27,7 @@
               <img class="news__item-image" src='{{ i.image.url }}' alt="Ректор" width="260"
                    height="195">
               <p class="news__item-subtitle">{{ i.preview }}</p>
-              <a class="news__item-link" href="#">Читать</a>
+              <a class="news__item-link" href="{{ i.get_absolute_url }}">Читать</a>
             </li>
           {% endfor %}
         </ul>
