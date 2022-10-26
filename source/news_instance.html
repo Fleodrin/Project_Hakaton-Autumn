@@ -4,11 +4,13 @@
     <li class="news__item">
       <h3 class="news__item-title">{{ news.title }}</h3>
       <p class="news__item-date">{{ news.public_date|date:'j.m.y' }}</p>
+      {% if news.image %}
       <img class="news__item-image" src='{{ news.image.url }}' alt="Ректор" width="260"
            height="195">
+      {% endif %}
       <p class="news__item-subtitle">{{ news.preview }}</p>
       <a class="news__item-link" href="{{ news.get_absolute_url }}">Читать</a>
-      <p >{{ news.main_text }}</p>
+      {{ news.main_text|safe}}
     </li>
   </ul>
 {% endblock %}

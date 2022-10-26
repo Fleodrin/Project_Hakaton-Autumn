@@ -47,6 +47,8 @@ INSTALLED_APPS = [
   'web.apps.WebConfig',
   'user.apps.UserConfig',
   'news.apps.NewsConfig',
+  'ckeditor',
+  'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -136,7 +138,9 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = 'static/'
-
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+AUTH_USER_MODEL = 'user.User'
+AUTHENTICATION_BACKENDS = ['user.backend.UserBackend']
 # for production
 STATIC_ROOT = os.path.join(BASE_DIR / 'build/static')
 
@@ -152,3 +156,38 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'rector.site@gmail.com'
 EMAIL_HOST_PASSWORD = 'otdxtomrqyicsoxw'
 EMAIL_USE_TLS = True
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+# CKEDITOR_CONFIGS
+CKEDITOR_CONFIGS = {
+  'default': {
+    'toolbar': [
+      ['Undo', 'Redo',
+       '-', 'Bold', 'Italic', 'Underline',
+       '-', 'Link', 'Unlink', 'Anchor',
+       '-', 'Format',
+       '-', 'Maximize',
+       '-', 'Table',
+       '-', 'Image',
+       '-', 'Source',
+       '-', 'NumberedList', 'BulletedList'
+       ],
+      ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+       '-', 'Font', 'FontSize', 'TextColor',
+       '-', 'Outdent', 'Indent',
+       '-', 'HorizontalRule',
+       '-', 'Blockquote'
+       ]
+    ],
+    'height': 500,
+    'width': '100%',
+    'toolbarCanCollapse': False,
+    'forcePasteAsPlainText': True
+  },
+  'comment': {
+    'toolbar': [
+    ],
+    'height': 80,
+    'width': 500,
+    'forcePasteAsPlainText': True
+  }
+}

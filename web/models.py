@@ -12,6 +12,10 @@ class Feedback(models.Model):
   def __str__(self):
     return self.email
 
+  class Meta:
+    verbose_name = 'Фидбэк'
+    verbose_name_plural = 'Фидбэки'
+
 
 def add_feedback(name, email, text):
   record = Feedback(name=name, email=email, text=text)
