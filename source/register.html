@@ -3,23 +3,22 @@
   <main class="page__login login">
     <h1 class="login__title">Регистрация</h1>
     <a class="login__link" href="{% url 'login' %}">Вход</a>
-
     <form class="login__form form" method="post">
       {% csrf_token %}
       <label class="form__label" for="field-name">ФИО</label>
-      <input class="form__field" id="field-name" name="field-name" placeholder="Иванов Иван Иванович"
+      <input class="form__field" id="field-name" name="name" placeholder="Иванов Иван Иванович"
              autocomplete="off" required>
 
       <label class="form__label" for="field-email">Почта</label>
-      <input class="form__field" id="field-email" type="email" name="field-email" placeholder="example@elpmaxe.com"
+      <input class="form__field" id="field-email" type="email" name="email" placeholder="example@elpmaxe.com"
              autocomplete="off" required>
 
       <label class="form__label" for="field-pass">Пароль</label>
-      <input class="form__field" id="field-pass" type="password" name="field-pass" placeholder="••••••••"
+      <input class="form__field" id="field-pass" type="password" name="password1" placeholder="••••••••"
              autocomplete="off" required>
 
       <label class="form__label" for="field-pass-repeat">Повторите пароль</label>
-      <input class="form__field" id="field-pass-repeat" type="password" name="field-pass-repeat" placeholder="••••••••"
+      <input class="form__field" id="field-pass-repeat" type="password" name="password2" placeholder="••••••••"
              autocomplete="off" required>
 
       <fieldset class="form__group form__group--type">

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <ul class="news__list">
+    <li class="news__item">
+      <h3 class="news__item-title">{{ news.title }}</h3>
+      <p class="news__item-subtitle">{{ news.preview }}</p>
+      <a class="news__item-link" href="{{ news.get_absolute_url }}">Читать</a>
+      {{ news.main_text|safe}}
+    </li>
+  </ul>
+{% endblock %}

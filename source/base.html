@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   {% load static %}
 
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>University</title>
   <link rel="stylesheet" href='{% static "css/style.min.css" %}'>
@@ -12,7 +13,8 @@
   <link rel="apple-touch-icon" href='{% static "img/favicons/apple.png" %}'> <!-- 180×180 -->
   <link rel="manifest" href='{% static "manifest.webmanifest" %}'>
 </head>
-
+<script src='{%static "ckeditor/ckeditor-init.js" %}'></script>
+<script src='{%static "ckeditor/ckeditor/ckeditor.js"%}'></script>
 
 <body class="page__body">
 
@@ -77,13 +79,15 @@
       </li>
     </ul>
     <a class="main-footer__logo" href="#">
-        <use class="main-footer__logo-image"  src="{%static 'img/main-logo.svg'  %}" width="60" height="60"></use>
+        <img class="main-footer__logo-image"  src="{%static 'img/main-logo.svg'  %}" width="60" height="60">
     </a>
   </div>
 </footer>
 {% block pop_up %}
 {% endblock %}
-<script src='{% static "js/main.js" %}' type="module"></script>
+<p hidden id="login_url">{%url 'login'  %}</p>
+<p hidden id="logout_url">{%url 'logout'  %}</p>
+<script src='{% static "js/menu-toggle.js" %}'></script>
 </body>
 </html>
 

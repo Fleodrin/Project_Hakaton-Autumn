@@ -1,74 +1,60 @@
+import sys
+
+from django.contrib.sessions.backends.cached_db import SessionStore
 from django.core.mail import send_mail
-from django.shortcuts import render
-from .models import User, add_user, add_feedback, upload_news, News
+from django.core.paginator import Paginator
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render, redirect
+from django.template.defaulttags import url
+
+from news.models import News
+from webapp import urls
+from .models import add_feedback
+import logging, logging.config
+import sys
 
 
-# Create your views here.
-
-def index(request, contexts=None, ):
-  if contexts is None:
-    contexts = {'none': 1}
+def index(request):
+  context = {}
+  try:
+    login_success = request.COOKIES['login_success']
+  except:
+    login_success = None
+  try:
+    cookie = request.COOKIES['login_status']
+  except KeyError:
+    cookie = None
+  if cookie is not None:
+    context.update({'login_status': cookie})
+  if login_success is not None:
+    context.update({'login_success': login_success})
   name = request.POST.get('feedback-name')
   email = request.POST.get('feedback-mail')
   message = request.POST.get('feedback-message')
-  news = News.objects.all().order_by('-public_date')
-  context = {
-    'news': news,
-  }
-  context.update(contexts)
+  context_news = get_news_context(request)
+  context.update(context_news)
   if request.method == 'POST' and name is not None:
     add_feedback(name, email, message)
     message = 'От: ' + name + '\n' + message + '\n' + 'Почта для связи: ' + email
-    # send_mail(subject='От: ' + name, message=message,
-    #           from_email='loxigl@sandboxc1f4b2f14c544b6b8cbf621a0fde9dad.mailgun.org',
-    #           recipient_list=['rector.site@gmail.com'])
-    context = {'result': 2}
+    send_mail(subject='От: ' + name, message=message,
+              from_email='rector.site@gmail.com',
+              recipient_list=['rector.site@gmail.com'])
+    res = {'result': 2}
+    context.update(res)
+
   return render(request, 'index.html', context)
 
 
-def register(request):
-  name = request.POST.get('field-name')
-  email = request.POST.get('field-email')
-  error = 0
-  try:
-    user = User.objects.get(email=email)
-    error = 1
-  except User.DoesNotExist:
-    user = None
-  password = request.POST.get('field-pass')
-  who = request.POST.get('product-group')
-  if request.method == 'POST' and name is not None and user is None:
-    add_user(name, email, password, who)
-  return render(request, 'register.html', context={'error': error})
-
-
-def login(request):
-  email_form = request.POST.get('field-email')
-  user = None
-  if email_form is not None:
-    try:
-      user = User.objects.get(email=email_form)
-    except User.DoesNotExist:
-      user = None
-  result = 0
-  if user is not None:
-
-    password_form = request.POST.get('field-pass')
-    if password_form == user.password:
-      result = 1
-    else:
-      result = 2
-  context = {
-    'result': result
+def get_news_context(request):
+  news = News.objects.all().order_by('-public_date')
+  p = Paginator(news, 3)
+  page = request.GET.get('page')
+  newss = p.get_page(page)
+  context_news = {
+    'news': newss,
   }
-  if result == 1:
-    return index(request, context)
-  else:
-    return render(request, 'login.html', context)
-
-
-def news(request):
-  return 0
+  print(News.objects.all())
+  return context_news
 
 
 def calendar(request):

@@ -4,7 +4,9 @@
   <main class="main-container">
     <section class="title">
       <div class="title__wrapper">
+        {% if request.user %}
         <h1 class="title__text">Информационный портал вашего вуза</h1>
+        {% endif  %}
       </div>
     </section>
     <section class="news">
@@ -19,17 +21,19 @@
           </li>
         </ul>
 
-      <ul class="news__list">
-        {% for i in news %}
-          <li class="news__item">
-          <h3 class="news__item-title">{{ i.title }}</h3>
-          <p class="news__item-date">{{ i.public_date|date:'j.m.y'}}</p>
-          <img class="news__item-image" src='{{ i.image.url }}' alt="Ректор" width="260"
-               height="195">
-          <p class="news__item-subtitle">{{ i.preview }}</p>
-          <a class="news__item-link" href="#">Читать</a>
-        </li>
-        {% endfor %}
+        <ul class="news__list">
+          {% for i in news %}
+            <li class="news__item">
+              <h3 class="news__item-title">{{ i.title }}</h3>
+              <p class="news__item-date">{{ i.public_date|date:'j.m.y' }}</p>
+              {% if i.image %}
+              <img class="news__item-image" src='{{ i.image.url }}' alt="Ректор" width="260"
+                   height="195">
+              {% endif %}
+              <p class="news__item-subtitle">{{ i.preview }}</p>
+              <a class="news__item-link" href="{{ i.get_absolute_url }}">Читать</a>
+            </li>
+          {% endfor %}
         </ul>
         <a class="news__link" href="#">Ещё</a>
       </div>
@@ -68,4 +72,5 @@
 {% block pop_up %}
   {% include 'popup-login.html' %}
   {% include 'popup-provost.html' %}
+  <script src="/static/js/main.js" type="module"></script>
 {% endblock %}

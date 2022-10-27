@@ -17,9 +17,7 @@ import mimetypes
 from django.template.backends import django
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-mimetypes.add_type("text/css", ".css", True)
-mimetypes.add_type("image/svg+xml", ".svg", True)
-mimetypes.add_type("image/svg+xml", ".svgz", True)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -45,6 +43,10 @@ INSTALLED_APPS = [
   'django.contrib.messages',
   'django.contrib.staticfiles',
   'web.apps.WebConfig',
+  'user.apps.UserConfig',
+  'news.apps.NewsConfig',
+  'ckeditor',
+  'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -64,10 +66,14 @@ ROOT_URLCONF = 'webapp.urls'
 TEMPLATES = [
   {
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'DIRS': [BASE_DIR / 'build/template',
-             BASE_DIR / 'source/templates',
+    'DIRS': [
+      # for prod
+      BASE_DIR / 'build/template',
 
-             ]
+      # for dev
+      BASE_DIR / 'source/templates',
+
+    ]
     ,
     'APP_DIRS': True,
     'OPTIONS': {
@@ -130,14 +136,56 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = 'static/'
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+AUTH_USER_MODEL = 'user.User'
+AUTHENTICATION_BACKENDS = ['user.backend.UserBackend']
+# for production
 STATIC_ROOT = os.path.join(BASE_DIR / 'build/static')
+
+# for dev
+# STATIC_ROOT = os.path.join(BASE_DIR / 'source')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'loxigl@sandboxc1f4b2f14c544b6b8cbf621a0fde9dad.mailgun.org'
-EMAIL_HOST_PASSWORD = '6e5df9a2b05166d58d29052f94cd9627-8845d1b1-18c2a49f'
+EMAIL_HOST_USER = 'rector.site@gmail.com'
+EMAIL_HOST_PASSWORD = 'otdxtomrqyicsoxw'
 EMAIL_USE_TLS = True
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+# CKEDITOR_CONFIGS
+CKEDITOR_CONFIGS = {
+  'default': {
+    'toolbar': [
+      ['Undo', 'Redo',
+       '-', 'Bold', 'Italic', 'Underline',
+       '-', 'Link', 'Unlink', 'Anchor',
+       '-', 'Format',
+       '-', 'Maximize',
+       '-', 'Table',
+       '-', 'Image',
+       '-', 'Source',
+       '-', 'NumberedList', 'BulletedList'
+       ],
+      ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+       '-', 'Font', 'FontSize', 'TextColor',
+       '-', 'Outdent', 'Indent',
+       '-', 'HorizontalRule',
+       '-', 'Blockquote'
+       ]
+    ],
+    'height': 500,
+    'width': '100%',
+    'toolbarCanCollapse': False,
+    'forcePasteAsPlainText': True
+  },
+  'comment': {
+    'toolbar': [
+    ],
+    'height': 80,
+    'width': 500,
+    'forcePasteAsPlainText': True
+  }
+}
