@@ -3,7 +3,6 @@
   <main class="page__login login">
     <h1 class="login__title">Регистрация</h1>
     <a class="login__link" href="{% url 'login' %}">Вход</a>
-
     <form class="login__form form" method="post">
       {% csrf_token %}
       <label class="form__label" for="field-name">ФИО</label>

@@ -53,6 +53,7 @@ def get_news_context(request):
   context_news = {
     'news': newss,
   }
+  print(News.objects.all())
   return context_news
 
 

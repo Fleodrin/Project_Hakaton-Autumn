@@ -24,7 +24,7 @@ class NewsCreateView(View):
   form = NewsCreateForm
 
   def get(self, request, *args, **kwargs):
-    return render(request, self.template,{'form':self.form})
+    return render(request, self.template, {'form': self.form})
 
   def post(self, request, *args, **kwargs):
     form = self.form(request.POST)

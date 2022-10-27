@@ -4,7 +4,9 @@
   <main class="main-container">
     <section class="title">
       <div class="title__wrapper">
-        <h1 class="title__text">Информационный портал вашего вуза {{ request.user.get_email }}</h1>
+        {% if request.user %}
+        <h1 class="title__text">Информационный портал вашего вуза</h1>
+        {% endif  %}
       </div>
     </section>
     <section class="news">

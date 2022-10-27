@@ -7,6 +7,7 @@ from user.models import User
 from user.models import add_user
 from django.views.generic import View, CreateView
 from django.contrib.auth import login
+from django.contrib.auth import logout as logout_dj
 from .backend import UserBackend
 from .forms import LoginForm, RegistrationForm
 
@@ -71,35 +72,6 @@ def register(request):
   return render(request, 'register.html', context={'error': error})
 
 
-def logina(request):
-  email_form = request.POST.get('field-email')
-  user = None
-  tmp = 0
-  if email_form is not None:
-    try:
-      user = User.objects.get(email=email_form)
-    except User.DoesNotExist:
-      user = None
-  if user is not None:
-    password_form = request.POST.get('field-pass')
-    if password_form == user.password:
-      tmp = 1
-    else:
-      tmp = 2
-  context = {
-    'action': tmp
-  }
-  if tmp == 1:
-    obj = redirect('general')
-
-    # obj.set_cookie('login_status', True, 60 * 60 * 24 * 15)
-    # obj.set_cookie('login_success', 1, 20)
-    return obj
-  else:
-    return render(request, 'login.html', context)
-
-
 def logout(request):
-  final = redirect('general')
-  final.set_cookie('login_status', True, -1)
-  return final
+  logout_dj(request)
+  return redirect('general')

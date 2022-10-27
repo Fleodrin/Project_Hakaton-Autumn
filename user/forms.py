@@ -14,6 +14,7 @@ class LoginForm(forms.Form):
 class RegistrationForm(UserCreationForm):
   name = forms.CharField(widget=forms.TextInput())
   email = forms.CharField(widget=forms.TextInput())
+
   # field_password = forms.CharField(
   #   widget=forms.PasswordInput(),
   # )
