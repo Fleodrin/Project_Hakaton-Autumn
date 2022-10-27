@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -7,7 +9,7 @@ class News(models.Model):
   title = models.CharField(max_length=200)
   main_text = RichTextUploadingField(null=True, blank=False)
   preview = models.CharField(max_length=150)
-  public_date = models.DateField(null=True)
+  public_date = models.DateField(default=datetime.date.today())
   image = models.ImageField(upload_to='files/', blank=True, null=True)
 
   def get_absolute_url(self):
