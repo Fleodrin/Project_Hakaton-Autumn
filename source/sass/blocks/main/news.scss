@@ -21,6 +21,13 @@
   font-size: 22px;
   text-align: center;
   text-transform: uppercase;
+
+  @media (min-width: f.$tablet-width) {
+    width: 420px;
+    margin-bottom: 40px;
+    font-size: 34px;
+    line-height: 38px;
+  }
 }
 
 .news__buttons-list {
@@ -28,6 +35,14 @@
   list-style-type: none;
   margin: 0 0 57px;
   padding: 0;
+
+  @media (min-width: f.$tablet-width) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 0 10px;
+  }
 }
 
 .news__buttons-button {
@@ -60,6 +75,12 @@
       right: 60px;
       top: 8px;
       background-image: url("../img/arrow.svg");
+      background-repeat: no-repeat;
+    }
+
+    @media (min-width: f.$tablet-width) {
+      border: 0;
+      border-radius: 0;
     }
   }
 
@@ -75,6 +96,11 @@
 
   &:active {
     opacity: 0.5;
+  }
+
+  @media (min-width: f.$tablet-width) {
+    background: none;
+    border-radius: 0;
   }
 }
 
