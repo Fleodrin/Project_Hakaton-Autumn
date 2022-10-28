@@ -106,9 +106,12 @@
 
 .news__list {
   width: 100%;
-  margin: 0;
   padding: 0;
   list-style-type: none;
+
+  @media (min-width: f.$tablet-width) {
+    margin-bottom: 60px;
+  }
 }
 
 .news__item {
@@ -137,10 +140,6 @@
       margin: 0 auto 25px;
     }
   }
-}
-
-.news__item:last-child {
-  margin: 0 auto 98px;
 }
 
 .news__item-title {
@@ -210,17 +209,4 @@
   color: inherit;
   text-align: center;
   order: 4;
-}
-
-.news__link {
-  position: absolute;
-  bottom: 25px;
-  width: 240px;
-  line-height: 48px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: inherit;
-  background-color: #61e78d;
-  border-radius: 8px;
 }
