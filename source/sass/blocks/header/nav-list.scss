@@ -23,6 +23,14 @@
   box-sizing: border-box;
 }
 
+.nav-list__button:hover {
+  text-decoration: underline;
+}
+
+.nav-list__button:active {
+  opacity: 0.7;
+}
+
 .nav-list__item:last-child {
   .nav-list__button {
     border-radius: 0 0 12px 12px;
@@ -45,9 +53,8 @@
     }
 
     .nav-list__button--enter {
-      background-color: f.$color-background-second;
+      border: 2px solid #444444;
       padding: 14px 6px 11px;
-      border-radius: 8px;
     }
 
     &:last-child {

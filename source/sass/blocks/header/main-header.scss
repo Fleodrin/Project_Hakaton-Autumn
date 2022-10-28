@@ -21,6 +21,14 @@
   margin-right: auto;
 }
 
+.main-header__logo:hover {
+  opacity: 0.7;
+}
+
+.main-header__logo:active {
+  opacity: 0.5;
+}
+
 .main-header__logo-image {
   display: block;
 }
