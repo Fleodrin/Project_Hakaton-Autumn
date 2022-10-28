@@ -33,6 +33,16 @@
   border-radius: 8px;
   font-size: 18px;
   border: none;
+  outline: none;
+
+  &:hover {
+    box-shadow: 0 0 0 2px f.$color-accent;
+  }
+
+  &:focus,
+  &:active {
+    box-shadow: 0 0 0 2px #000000;
+  }
 }
 
 .form__field::placeholder {

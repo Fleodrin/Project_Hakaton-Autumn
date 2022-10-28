@@ -56,21 +56,9 @@
 }
 
 .feedback__input {
-  padding: 18px;
-  border: none;
-  border-radius: 8px;
-  resize: none;
-
   &--massage {
     min-height: 260px;
-  }
-
-  &::placeholder {
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 18px;
-    line-height: 22px;
-    color: #000000;
-    opacity: 50%;
+    resize: none;
   }
 }
 
@@ -102,17 +90,6 @@
   .feedback__subtitle {
     font-size: 24px;
     line-height: 30px
-  }
-
-  .feedback__input {
-    padding: 10px 30px;
-    font-size: 24px;
-    line-height: 30px;
-
-    &--massage {
-      padding-top: 16px;
-      padding-bottom: 16px;
-    }
   }
 
   .feedback__form {
