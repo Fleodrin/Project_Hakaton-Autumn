@@ -12,3 +12,4 @@ node_modules/
 web/__pycache__/
 webapp/__pycache__/
 web/migrations/__pycache__/
+__pycache__/
