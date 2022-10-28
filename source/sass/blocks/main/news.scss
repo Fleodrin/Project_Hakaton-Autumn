@@ -52,7 +52,7 @@
     border-radius: 0 0 15px 15px;
 
     &:after {
-      transition: 300ms;
+      transition: 200ms;
       position: absolute;
       content: '';
       width: 25px;
@@ -65,7 +65,7 @@
 
   &.news__buttons-button--additional-upside {
     &:after {
-      transform: rotate(180deg);
+      transform: rotate(-180deg);
     }
   }
 

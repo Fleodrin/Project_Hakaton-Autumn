@@ -10,3 +10,10 @@ button.onclick = (evt) => {
     button.textContent = textFirst;
   }
 };
+
+const buttonAdd = document.querySelector('.news__buttons-button--additional');
+
+buttonAdd.onclick = (evt) => {
+  evt.preventDefault();
+  buttonAdd.classList.toggle('news__buttons-button--additional-upside');
+};
