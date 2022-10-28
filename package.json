@@ -22,9 +22,11 @@
     "stylelint-config-recommended-scss": "^7.0.0"
   },
   "scripts": {
+    "license": "MIT",
     "editorconfig": "editorconfig-cli",
     "lint": "stylelint \\\"sass/**/*.scss\\\"",
     "test": "npm run editorconfig && npm run lint",
+    "starter": "browser-sync start --server --no-ui --port 8080 --files \"source/\"",
     "build": "gulp build",
     "start": "gulp"
   },
@@ -44,7 +46,8 @@
     "source/sass/**/*.scss"
   ],
   "engines": {
-    "node": "^16"
+    "node": "^16",
+    "npm": "8.x"
   },
   "type": "module"
 }

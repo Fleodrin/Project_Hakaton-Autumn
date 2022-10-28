@@ -11,6 +11,8 @@ import squoosh from 'gulp-libsquoosh';
 import svgo from 'gulp-svgmin';
 import svgstore from 'gulp-svgstore';
 import del from 'del';
+import browser from 'browser-sync';
+import {exec} from 'child_process';
 
 // Styles
 
@@ -25,6 +27,7 @@ export const styles = () => {
     ]))
     .pipe(rename('style.min.css'))
     .pipe(gulp.dest('build/static/css', {sourcemaps: '.'}))
+    .pipe(browser.stream());
 }
 
 // HTML
@@ -89,7 +92,9 @@ const copy = (done) => {
   gulp.src([
     'source/*.ico',
     'source/*.webmanifest',
-    'source/js/*'
+    'source/js/*',
+    'source/admin/**',
+    'source/ckeditor/**'
   ], {
     base: 'source'
   })
@@ -113,19 +118,44 @@ const clean = () => {
   return del('build');
 };
 
-//Reload
+//Локальный запуск сервера через терминал
+//-->
 
-// const reload = (done) => {
-//   browser.reload();
+// export const startserver = (done) => {
+//   exec('python manage.py runserver 8000');
 //   done();
 // }
 
+// export const startservers = gulp.parallel(server, startserver);
+
+//<--
+
+//Server
+
+export const server = (done) => {
+  browser.init({
+    baseDir: "./build",
+    open: false,
+    notify: true,
+    port: 9090,
+    proxy: '127.0.0.1:8000'
+  })
+  done();
+}
+
+//Reload
+
+const reload = (done) => {
+  browser.reload();
+  done();
+}
+
 // Watcher
 
-export const watcher = () => {
+const watcher = () => {
   gulp.watch('source/sass/**/*.scss', gulp.series(styles));
-  gulp.watch('source/js/*.js', gulp.series(copy));
-  gulp.watch('source/*.html', gulp.series(html));
+  gulp.watch('source/js/*.js', gulp.series(scripts, reload));
+  gulp.watch('source/*.html', gulp.series(html, reload));
 }
 
 //Build
@@ -138,7 +168,7 @@ export const build = gulp.series(
   gulp.parallel(
     styles,
     html,
-    // scripts,
+    scripts,
     svg,
     sprite,
     createWebp
@@ -155,12 +185,14 @@ export default gulp.series(
   gulp.parallel(
     styles,
     html,
-    // scripts,
+    scripts,
     svg,
     sprite,
     createWebp
   ),
-  // gulp.series(
-  //   watcher
-  // )
+  gulp.parallel(
+    // startservers,
+    server,
+    watcher
+  )
 );
