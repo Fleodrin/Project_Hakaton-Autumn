@@ -5,8 +5,8 @@
     <section class="title">
       <div class="title__wrapper">
         {% if request.user %}
-        <h1 class="title__text">Информационный портал вашего вуза</h1>
-        {% endif  %}
+          <h1 class="title__text">Информационный портал вашего вуза </h1>
+        {% endif %}
       </div>
     </section>
     <section class="news">
@@ -17,9 +17,14 @@
             <button class="news__buttons-button news__buttons-button--toggle" type="button">Горячие</button>
           </li>
           <li class="news__buttons-item">
-            <button class="news__buttons-button news__buttons-button--additional news__buttons-button--additional-upside" type="button">По дате</button>
+            <button
+              class="news__buttons-button news__buttons-button--additional news__buttons-button--additional-upside"
+              type="button">По дате
+            </button>
           </li>
         </ul>
+
+        <p>{{ news.0.preview }}</p>
 
         <ul class="news__list">
           {% for i in news %}
@@ -27,8 +32,8 @@
               <h3 class="news__item-title">{{ i.title }}</h3>
               <p class="news__item-date">{{ i.public_date|date:'j.m.y' }}</p>
               {% if i.image %}
-              <img class="news__item-image" src='{{ i.image.url }}' alt="Ректор" width="260"
-                   height="195">
+                <img class="news__item-image" src='{{ i.image.url }}' alt="Ректор" width="260"
+                     height="195">
               {% endif %}
               <p class="news__item-subtitle">{{ i.preview }}</p>
               <a class="news__item-link" href="{{ i.get_absolute_url }}">Читать</a>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import permission_required
 # Create your views here.
 from django.views import View
 
@@ -24,10 +24,13 @@ class NewsCreateView(View):
   form = NewsCreateForm
 
   def get(self, request, *args, **kwargs):
-    return render(request, self.template, {'form': self.form})
+    if request.user.is_staff:
+      return render(request, self.template, {'form': self.form})
+    else:
+      return redirect('general')
 
   def post(self, request, *args, **kwargs):
-    form = self.form(request.POST)
+    form = self.form(request.POST, request.FILES)
     if form.is_valid():
       form.save()
       return redirect('news')

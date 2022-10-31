@@ -16,18 +16,9 @@ import sys
 
 def index(request):
   context = {}
-  try:
-    login_success = request.COOKIES['login_success']
-  except:
-    login_success = None
-  try:
-    cookie = request.COOKIES['login_status']
-  except KeyError:
-    cookie = None
-  if cookie is not None:
-    context.update({'login_status': cookie})
-  if login_success is not None:
-    context.update({'login_success': login_success})
+  if 'logined'in request.session:
+    context.update({'login_feedback': 'true'})
+    del request.session['logined']
   name = request.POST.get('feedback-name')
   email = request.POST.get('feedback-mail')
   message = request.POST.get('feedback-message')
@@ -39,7 +30,7 @@ def index(request):
     send_mail(subject='От: ' + name, message=message,
               from_email='rector.site@gmail.com',
               recipient_list=['rector.site@gmail.com'])
-    res = {'result': 2}
+    res = {'result': '2'}
     context.update(res)
 
   return render(request, 'index.html', context)
@@ -51,7 +42,7 @@ def get_news_context(request):
   page = request.GET.get('page')
   newss = p.get_page(page)
   context_news = {
-    'news': newss,
+    'news': news,
   }
   print(News.objects.all())
   return context_news

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm
 
 from user.models import User
 
@@ -15,17 +16,23 @@ class RegistrationForm(UserCreationForm):
   name = forms.CharField(widget=forms.TextInput())
   email = forms.CharField(widget=forms.TextInput())
 
-  # field_password = forms.CharField(
-  #   widget=forms.PasswordInput(),
-  # )
-  # field_pass_repeat = forms.CharField(widget=forms.PasswordInput())
   class Meta:
+
     model = User
-    fields = ('name', 'email')
+    fields = ('name', 'email', 'productgroup','is_staff')
 
   def save(self, commit=True):
+
     user = super().save(commit=False)
+    print(user)
     user.set_password(self.cleaned_data['password1'])
     if commit:
       user.save()
     return user
+
+  def __init__(self, *args, **kwargs):
+    super(RegistrationForm, self).__init__(*args, **kwargs)
+    if self.data['productgroup'] == 'professor':
+      self.initial['is_staff'] = True
+    else:
+      self.initial['is_staff'] = False

@@ -43,9 +43,15 @@
             </a>
           </li>
           <li class="nav-list__item nav-list__item--right">
+            {% if not user.email %}
             <a class="nav-list__button nav-list__button--enter" href='{% url "login" %}'>
               Вход
             </a>
+            {% else %}
+            <a class="nav-list__button nav-list__button--enter" href='{% url "logout" %}'>
+              Выход
+            </a>
+            {% endif %}
           </li>
         </ul>
       </div>

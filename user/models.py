@@ -32,13 +32,15 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
   id = models.AutoField(primary_key=True)
-  name = models.CharField(max_length=150)
+  name = models.CharField(max_length=150, default='admin')
   email = models.EmailField(max_length=30, unique=True)
   password = models.CharField(max_length=200)
-  who = models.CharField(max_length=20)
+  productgroup = models.CharField(max_length=20)
   date_register = models.DateTimeField(default=timezone.now)
   is_active = models.BooleanField(default=True)
   is_staff = models.BooleanField(default=False)
+  is_user = models.BooleanField(default=True)
+  is_student=models.BooleanField(default=False)
   USERNAME_FIELD = 'email'
   objects = UserManager()
 
@@ -57,8 +59,3 @@ class User(AbstractBaseUser, PermissionsMixin):
   class Meta:
     verbose_name = 'Пользователь'
     verbose_name_plural = 'Пользователи'
-
-
-def add_user(name, email, password, who):
-  record = User(name=name, email=email, password=password, who=who)
-  record.save()
