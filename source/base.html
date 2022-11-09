@@ -13,14 +13,14 @@
   <link rel="apple-touch-icon" href='{% static "img/favicons/apple.png" %}'> <!-- 180×180 -->
   <link rel="manifest" href='{% static "manifest.webmanifest" %}'>
 </head>
-<script src='{%static "ckeditor/ckeditor-init.js" %}'></script>
-<script src='{%static "ckeditor/ckeditor/ckeditor.js"%}'></script>
+<script src='{% static "ckeditor/ckeditor-init.js" %}'></script>
+<script src='{% static "ckeditor/ckeditor/ckeditor.js" %}'></script>
 
 <body class="page__body">
 
 <header class="main-header">
   <div class="main-header__wrapper">
-    <a class="main-header__logo" href="{%url 'general' %}">
+    <a class="main-header__logo" href="{% url 'general' %}">
       <img class="main-header__logo-image" src='{% static "img/main-logo.svg" %}' width="48" height="48" alt="Логотип">
     </a>
     <nav class="main-nav main-nav--closed main-nav--nojs">
@@ -44,13 +44,13 @@
           </li>
           <li class="nav-list__item nav-list__item--right">
             {% if not user.email %}
-            <a class="nav-list__button nav-list__button--enter" href='{% url "login" %}'>
-              Вход
-            </a>
+              <a class="nav-list__button nav-list__button--enter" href='{% url "login" %}'>
+                Вход
+              </a>
             {% else %}
-            <a class="nav-list__button nav-list__button--enter" href='{% url "logout" %}'>
-              Выход
-            </a>
+              <a class="nav-list__button nav-list__button--enter" href='{% url "logout" %}'>
+                Выход
+              </a>
             {% endif %}
           </li>
         </ul>
@@ -69,7 +69,7 @@
             +7 (999) 987 65 43-21
           </span>
           <svg class="contact-list__icon contact-list__icon--phone-icon" width="16" height="20">
-            <use href="{%static 'img/sprite.svg'%}#phone-icon"></use>
+            <use href="{% static 'img/sprite.svg' %}#phone-icon"></use>
           </svg>
         </a>
       </li>
@@ -85,14 +85,14 @@
       </li>
     </ul>
     <a class="main-footer__logo" href="#">
-        <img class="main-footer__logo-image"  src="{%static 'img/main-logo.svg'  %}" width="60" height="60">
+      <img class="main-footer__logo-image" src="{% static 'img/main-logo.svg' %}" width="60" height="60">
     </a>
   </div>
 </footer>
 {% block pop_up %}
 {% endblock %}
-<p hidden id="login_url">{%url 'login'  %}</p>
-<p hidden id="logout_url">{%url 'logout'  %}</p>
+<p hidden id="login_url">{% url 'login' %}</p>
+<p hidden id="logout_url">{% url 'logout' %}</p>
 <script src='{% static "js/menu-toggle.js" %}'></script>
 </body>
 </html>
