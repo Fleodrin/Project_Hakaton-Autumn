@@ -9,7 +9,7 @@ class NewsCreateForm(forms.ModelForm):
   class Meta:
     choise = [('hot', 'Горячие'), ('cold', 'Холодные')]
     model = News
-    fields = ['title', 'preview', 'main_text', 'image', 'tags']
+    fields = ['title', 'preview', 'tags', 'main_text', 'image']
     widgets = {
       'title': forms.TextInput(attrs={'class': 'news-create-form-title'}),
       'main_text': CKEditorUploadingWidget(attrs={'class': 'news-create-form-main-text'}),
