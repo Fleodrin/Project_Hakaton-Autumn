@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import babel from 'gulp-babel';
 import plumber from 'gulp-plumber';
 import sass from 'gulp-dart-sass';
 import postcss from 'gulp-postcss';
