@@ -8,7 +8,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
   path('', views.index, name='general'),
-  path('/getdata', views.getdata, name='getdata')
+  path('getdata/', views.getdata, name='getdata')
   # path('login/', RedirectView.as_view(url='login', permanent=False)),
 ]
 

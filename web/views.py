@@ -50,6 +50,7 @@ def get_news_context(request):
 
 def getdata(request):
   news = News.objects.all().order_by('-public_date')
+  print(news)
   return news
 
 
