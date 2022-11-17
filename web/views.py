@@ -1,5 +1,5 @@
 import sys
-
+from django.core import serializers
 from django.contrib.sessions.backends.cached_db import SessionStore
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
@@ -51,7 +51,8 @@ def get_news_context(request):
 def getdata(request):
   news = News.objects.all().order_by('-public_date')
   print(news)
-  return news
+  news_json = serializers.serialize('json', news)
+  return HttpResponse(news)
 
 
 def calendar(request):
