@@ -1,5 +1,6 @@
+import json
 import sys
-
+from django.core import serializers
 from django.contrib.sessions.backends.cached_db import SessionStore
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
@@ -16,7 +17,7 @@ import sys
 
 def index(request):
   context = {}
-  if 'logined'in request.session:
+  if 'logined' in request.session:
     context.update({'login_feedback': 'true'})
     del request.session['logined']
   name = request.POST.get('feedback-name')
@@ -46,6 +47,13 @@ def get_news_context(request):
   }
   print(News.objects.all())
   return context_news
+
+
+def getdata(request):
+  news = News.objects.all().order_by('-public_date')
+  print(news)
+  news_json = serializers.serialize('json', news)
+  return HttpResponse(news_json)
 
 
 def calendar(request):

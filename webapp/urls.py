@@ -34,6 +34,7 @@ urlpatterns = [
   path('calendar/', views.calendar, name='calendar'),
   path('events', views.events, name='events'),
   path('user/', include('user.urls')),
+  path('getdata/',include('web.urls'),name='getdata'),
   re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
   re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
   path('ckeditor/', include('ckeditor_uploader.urls'))
