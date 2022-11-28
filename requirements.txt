@@ -9,3 +9,4 @@ whitenoise
 django-browser-reload
 Pillow
 django-ckeditor
+python-dotenv

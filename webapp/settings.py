@@ -12,13 +12,13 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os.path
 from pathlib import Path
 import mimetypes
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+from dotenv import load_dotenv
 from django.template.backends import django
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+load_dotenv()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-&!)dmjs9)=yq-e6n_h_u)s1nimtqauks@=4#kl$^mu%j30a&^s')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 
 ALLOWED_HOSTS = [
   '127.0.0.1',
@@ -48,6 +48,9 @@ INSTALLED_APPS = [
   'news.apps.NewsConfig',
   'ckeditor',
   'ckeditor_uploader',
+  'api.apps.ApiConfig',
+  'challenge.apps.ChallengeConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -95,7 +98,7 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 DATABASES = {
   'default': {'ENGINE': 'django.db.backends.postgresql',
-              'HOST': os.environ.get('POSTGRES_HOST', 'ec2-54-160-200-167.compute-1.amazonaws.com'),
+              'HOST': os.environ.get('POSTGRES_HOST', 'abobus'),
               'NAME': os.environ.get('POSTGRES_DB', 'dbp2fprm2mlte7'),
               'USER': os.environ.get('POSTGRES_USER', 'nwbzgggruzhrqn'),
               'PASSWORD': os.environ.get('POSTGRES_PASSWORD',

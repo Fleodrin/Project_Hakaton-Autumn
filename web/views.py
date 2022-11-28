@@ -49,11 +49,7 @@ def get_news_context(request):
   return context_news
 
 
-def getdata(request):
-  news = News.objects.all().order_by('-public_date')
-  print(news)
-  news_json = serializers.serialize('json', news)
-  return HttpResponse(news_json)
+
 
 
 def calendar(request):
