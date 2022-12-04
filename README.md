@@ -1,6 +1,6 @@
 # Совместный проект «Hackathon-Autumun»
 
 * Front-end: [Fleodrin](https://github.com/Fleodrin), [Grony7](https://github.com/Grony7).
-* Back-end: [Zmeev06](https://github.com/Zmeev06).
+* Back-end: [loxigl](https://github.com/loxigl).
 
 ---
