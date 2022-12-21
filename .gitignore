@@ -1,6 +1,5 @@
 .DS_Store
 .idea
-.env
 .vscode
 *.ai
 *.log
@@ -14,3 +13,4 @@ web/__pycache__/
 webapp/__pycache__/
 web/migrations/__pycache__/
 __pycache__/
+.env
