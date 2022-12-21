@@ -1,5 +1,4 @@
 import gulp from 'gulp';
-import babel from 'gulp-babel';
 import plumber from 'gulp-plumber';
 import sass from 'gulp-dart-sass';
 import postcss from 'gulp-postcss';
@@ -12,7 +11,6 @@ import svgo from 'gulp-svgmin';
 import svgstore from 'gulp-svgstore';
 import del from 'del';
 import browser from 'browser-sync';
-import {exec} from 'child_process';
 
 // Styles
 
@@ -47,11 +45,6 @@ const scripts = () => {
 }
 
 //Images
-
-const optimizeImages = () => {
-  return gulp.src('source/img/**/*.{jpg,png}')
-    .pipe(gulp.dest('build/static/img'));
-}
 
 const copyImages = () => {
   return gulp.src('source/img/**/*.{jpg,png}')
@@ -106,18 +99,6 @@ const copyFonts = (done) => {
 const clean = () => {
   return del('build');
 };
-
-//Локальный запуск сервера через терминал
-//-->
-
-// export const startserver = (done) => {
-//   exec('python manage.py runserver 8000');
-//   done();
-// }
-
-// export const startservers = gulp.parallel(server, startserver);
-
-//<--
 
 //Server
 
@@ -177,7 +158,6 @@ export default gulp.series(
     sprite,
   ),
   gulp.parallel(
-    // startservers,
     server,
     watcher
   )
