@@ -5,12 +5,12 @@ from django.utils import timezone
 
 
 class News(models.Model):
-  title = models.CharField(max_length=200)
+  title = models.CharField(max_length=30)
   main_text = RichTextUploadingField(null=True, blank=False)
-  preview = models.CharField(max_length=150)
+  preview = models.CharField(max_length=75)
   public_date = models.DateField(default=timezone.now())
   image = models.ImageField(upload_to='files/', blank=True, null=True)
-  tags = models.CharField(max_length=20, default='cold')
+  tags = models.CharField(max_length=20, default='hot')
 
   def get_absolute_url(self):
     return reverse('news_detail', kwargs={'_id': self.id})
