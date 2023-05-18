@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 DATABASES = {
   'default': {'ENGINE': 'django.db.backends.postgresql',
-              'HOST': os.environ.get('POSTGRES_HOST', 'ec2-54-160-200-167.compute-1.amazonaws.com'),
-              'NAME': os.environ.get('POSTGRES_DB', 'dbp2fprm2mlte7'),
-              'USER': os.environ.get('POSTGRES_USER', 'nwbzgggruzhrqn'),
+              'HOST': os.environ.get('POSTGRES_HOST', 'dpg-chiqb5l269v2e2b9hong-a.oregon-postgres.render.com'),
+              'NAME': os.environ.get('POSTGRES_DB', 'test_ec5z'),
+              'USER': os.environ.get('POSTGRES_USER', 'test_ec5z_user'),
               'PASSWORD': os.environ.get('POSTGRES_PASSWORD',
-                                         '711e8d846024b575a49bceaec9aecea09d7ccf9b572c40f7866257c5bf9eb159'),
+                                         '7AA2qoEEk7iJEXe4epBQUy8Qw9AvMEsL'),
               'PORT': os.environ.get('POSTGRES_PORT', '5432'), },
 }
 
